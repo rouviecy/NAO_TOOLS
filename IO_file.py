@@ -20,4 +20,4 @@ class IO_file(object):
 		for ligne in f:
 			elems = ligne.split(" ")
 			liste.append(elems)
-		return liste
+		return [liste[0], liste[1:len(liste)]]

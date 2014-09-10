@@ -1,6 +1,6 @@
 from naoqi import ALProxy
 import IO_file
-import sys
+import sys, time
 
 class Mouvements(object):
 
@@ -10,6 +10,7 @@ class Mouvements(object):
 		self.vy = 0.0
 		self.vth = 0.0
 		self.joints = []
+		self.io_file = IO_file();
 		self.postureProxy = ALProxy("ALRobotPosture", IP, PORT)
 		self.motionProxy = ALProxy("ALMotion", IP, PORT)
 		self.motionProxy.setWalkArmsEnabled(True, True)
@@ -51,4 +52,15 @@ class Mouvements(object):
 	def set_vth(self, vth):	self.vth = vth
 
 	def update_joints(self):	self.joints = motionProxy.getAngles("Body", False)
-	def set_joints(self):		motionProxy.setAngles("Body", self.joints, 0.5)
+	def set_joints(self):		self.motionProxy.setAngles("Body", self.joints, 0.5)
+
+	def save_joints(self):
+		self.update_joints()
+		self.io_file.write_joints(self.joints, 1.)
+
+	def apply_joints_from_file(self):
+		liste = self.io_file.read_joints()
+		for elem in liste:
+			self.joints = liste[1]
+			self.set_joints()
+			time.sleep(liste[0])
