@@ -33,13 +33,14 @@ class GUI(object):
 		pygame.display.flip()
 
 	def action_clavier(self, downing, key):
-		if		key == c.K_QUIT:		return False
-		elif	key == c.K_LEFT:		self.serveur.go_left(downing)
-		elif	key == c.K_RIGHT:		self.serveur.go_right(downing)
-		elif	key == c.K_NORTH:		self.serveur.go_north(downing)
-		elif	key == c.K_SOUTH:		self.serveur.go_south(downing)
-		elif	key == c.K_STIFFON:		self.serveur.stiffness(True)
-		elif	key == c.K_STIFFOFF:	self.serveur.stiffness(False)
+		if		key == c.K_QUIT:					return False
+		elif	key == c.K_LEFT:					self.serveur.go_left(downing)
+		elif	key == c.K_RIGHT:					self.serveur.go_right(downing)
+		elif	key == c.K_NORTH:					self.serveur.go_north(downing)
+		elif	key == c.K_SOUTH:					self.serveur.go_south(downing)
+		elif	key == c.K_STIFFON:		if downing:	self.serveur.stiffness(True)
+		elif	key == c.K_STIFFOFF:	if downing:	self.serveur.stiffness(False)
+		elif	key == c.K_SAVE_JOINTS:	if downing:	self.serveur.save_joints()
 		return True
 
 	def action_joystick_bouton(self, bouton):

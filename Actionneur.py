@@ -19,6 +19,7 @@ class Actionneur(object):
 	def stiffness(self, activer):	self.move.stiffness(activer)
 	def assis(self):				self.move.go_assis()
 	def debout(self):				self.move.go_debout()
+	def save_joints(self):			self.move.save_joints()
 
 	def modifier_vitesse(self, dx, dy, dth):
 		self.rotation += dx

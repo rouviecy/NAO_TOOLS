@@ -22,6 +22,7 @@ class Interface_serveur(object):
 	def go_west(self, activer):		self.envoyer("gw" + ("1" if activer else "0"))
 	def go_est(self, activer):		self.envoyer("ge" + ("1" if activer else "0"))
 	def stiffness(self, activer):	self.envoyer("st" + ("1" if activer else "0"))
+	def save_joints(self):			self.envoyer("sav")
 	def assis(self):				self.envoyer("po0")
 	def debout(self):				self.envoyer("po1")
 	def quitter(self):

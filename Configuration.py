@@ -6,6 +6,7 @@ class Configuration(object):
 	K_RIGHT =			275
 	K_STIFFON =			270
 	K_STIFFOFF =		269
+	K_SAVE_JOINTS =		115
 	K_QUIT =			113
 
 	J_INDEX =			0
