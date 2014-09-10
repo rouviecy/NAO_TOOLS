@@ -4,7 +4,7 @@ import sys
 def verif_args():
 	if len(sys.argv) == 2:
 		parametre = int(sys.argv[1])
-		if parametre == 0 or parametre == 1 return True
+		if parametre == 0 or parametre == 1: return True
 	print "Utilisation :\n\tpython stiffness.py 0/1"
 	return False
 
