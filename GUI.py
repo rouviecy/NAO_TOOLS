@@ -9,6 +9,7 @@ class GUI(object):
 	def __init__(self, serveur):
 		self.joystick_WE = 0
 		self.joystick_NS = 0
+		self.joystick_ROT = 0
 		self.clock = pygame.time.Clock()
 		self.serveur = serveur
 		self.initialisation()
@@ -35,8 +36,8 @@ class GUI(object):
 		if		key == c.K_QUIT:	return False
 		elif	key == c.K_LEFT:	self.serveur.go_left(downing)
 		elif	key == c.K_RIGHT:	self.serveur.go_right(downing)
-		elif	key == c.K_UP:		self.serveur.go_up(downing)
-		elif	key == c.K_DOWN:	self.serveur.go_down(downing)
+		elif	key == c.K_UP:		self.serveur.go_north(downing)
+		elif	key == c.K_DOWN:	self.serveur.go_south(downing)
 		return True
 
 	def action_joystick_bouton(self, bouton):
@@ -46,53 +47,77 @@ class GUI(object):
 
 	def action_joystick_axe(self, axe, valeur):
 		if axe == c.J_AXIS_WE:
-			if		c.J_INTERVAL_L[0] <= valeur <= c.J_INTERVAL_L[1]:
+			if		c.J_INTERVAL_W[0] <= valeur <= c.J_INTERVAL_W[1]:
 				if		self.joystick_WE == 0:
 					self.joystick_WE = -1
-					self.serveur.go_left(True)
+					self.serveur.go_west(True)
 				elif	self.joystick_WE == 1:
 					self.joystick_WE = -1
-					self.serveur.go_right(False)
-					self.serveur.go_left(True)
-			elif	c.J_INTERVAL_R[0] <= valeur <= c.J_INTERVAL_R[1]:
+					self.serveur.go_est(False)
+					self.serveur.go_west(True)
+			elif	c.J_INTERVAL_E[0] <= valeur <= c.J_INTERVAL_E[1]:
 				if		self.joystick_WE == 0:
 					self.joystick_WE = +1
-					self.serveur.go_right(True)
+					self.serveur.go_est(True)
 				elif	self.joystick_WE == -1:
 					self.joystick_WE = +1
-					self.serveur.go_left(False)
-					self.serveur.go_right(True)
+					self.serveur.go_west(False)
+					self.serveur.go_est(True)
 			elif	c.J_INTERVAL_0WE[0] <= valeur <= c.J_INTERVAL_0WE[1]:
 				if		self.joystick_WE == -1:
 					self.joystick_WE = 0
-					self.serveur.go_left(False)
+					self.serveur.go_west(False)
 				elif	self.joystick_WE == +1:
 					self.joystick_WE = 0
-					self.serveur.go_right(False)
+					self.serveur.go_est(False)
 		if		axe == c.J_AXIS_NS:
-			if c.J_INTERVAL_U[0] <= valeur <= c.J_INTERVAL_U[1]:
+			if c.J_INTERVAL_N[0] <= valeur <= c.J_INTERVAL_N[1]:
 				if		self.joystick_NS == 0:
 					self.joystick_NS = -1
-					self.serveur.go_up(True)
+					self.serveur.go_north(True)
 				elif	self.joystick_NS == 1:
 					self.joystick_NS = -1
-					self.serveur.go_down(False)
-					self.serveur.go_up(True)
-			elif	c.J_INTERVAL_D[0] <= valeur <= c.J_INTERVAL_D[1]:
+					self.serveur.go_south(False)
+					self.serveur.go_north(True)
+			elif	c.J_INTERVAL_S[0] <= valeur <= c.J_INTERVAL_S[1]:
 				if		self.joystick_NS == 0:
 					self.joystick_NS = +1
-					self.serveur.go_down(True)
+					self.serveur.go_south(True)
 				elif	self.joystick_NS == -1:
 					self.joystick_NS = +1
-					self.serveur.go_up(False)
-					self.serveur.go_down(True)
+					self.serveur.go_north(False)
+					self.serveur.go_south(True)
 			elif	c.J_INTERVAL_0NS[0] <= valeur <= c.J_INTERVAL_0NS[1]:
 				if		self.joystick_NS == -1:
 					self.joystick_NS = 0
-					self.serveur.go_up(False)
+					self.serveur.go_north(False)
 				elif	self.joystick_NS == +1:
 					self.joystick_NS = 0
-					self.serveur.go_down(False)
+					self.serveur.go_south(False)
+		if		axe == c.J_AXIS_ROT:
+			if c.J_INTERVAL_L[0] <= valeur <= c.J_INTERVAL_L[1]:
+				if		self.joystick_ROT == 0:
+					self.joystick_ROT = -1
+					self.serveur.go_left(True)
+				elif	self.joystick_ROT == 1:
+					self.joystick_ROT = -1
+					self.serveur.go_right(False)
+					self.serveur.go_left(True)
+			elif	c.J_INTERVAL_R[0] <= valeur <= c.J_INTERVAL_R[1]:
+				if		self.joystick_ROT == 0:
+					self.joystick_ROT = +1
+					self.serveur.go_right(True)
+				elif	self.joystick_ROT == -1:
+					self.joystick_ROT = +1
+					self.serveur.go_left(False)
+					self.serveur.go_right(True)
+			elif	c.J_INTERVAL_0ROT[0] <= valeur <= c.J_INTERVAL_0ROT[1]:
+				if		self.joystick_ROT == -1:
+					self.joystick_ROT = 0
+					self.serveur.go_left(False)
+				elif	self.joystick_ROT == +1:
+					self.joystick_ROT = 0
+					self.serveur.go_right(False)
 		return True
 
 	def bouclage(self):
