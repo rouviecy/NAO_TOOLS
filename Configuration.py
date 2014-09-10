@@ -1,10 +1,11 @@
 class Configuration(object):
 
-	K_UP =				273
-	K_DOWN =			274
+	K_NORTH =			273
+	K_SOUTH =			274
 	K_LEFT =			276
 	K_RIGHT =			275
-	K_INHIB =			105
+	K_STIFFON =			270
+	K_STIFFOFF =		269
 	K_QUIT =			113
 
 	J_INDEX =			0

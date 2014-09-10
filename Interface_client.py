@@ -29,6 +29,10 @@ class Interface_client(object):
 				if c[3*i+1] == 'o' :
 					if		c[3*i+2] == '0' :	self.assis()
 					elif	c[3*i+2] == '1' :	self.debout()
+			elif c[3*i+0] == 's':
+				if c[3*i+1] == 't' :
+					if		c[3*i+2] == '0' :	self.stiffness(False)
+					elif	c[3*i+2] == '1' :	self.stiffness(True)
 
 	def go_left(self, activer):		self.actionneur.go_left(activer)
 	def go_right(self, activer):	self.actionneur.go_right(activer)

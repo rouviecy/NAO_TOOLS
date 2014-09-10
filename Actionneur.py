@@ -16,6 +16,7 @@ class Actionneur(object):
 	def go_south(self, activer):	self.modifier_vitesse(-1 if activer else +1, 0, 0)
 	def go_west(self, activer):		self.modifier_vitesse(0, +1 if activer else -1, 0)
 	def go_est(self, activer):		self.modifier_vitesse(0, -1 if activer else +1, 0)
+	def stiffness(self, activer):	self.move.stiffness(activer)
 	def assis(self):				self.move.go_assis()
 	def debout(self):				self.move.go_debout()
 
