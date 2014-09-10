@@ -8,6 +8,7 @@ class Mouvements(object):
 		self.vx = 0.0
 		self.vy = 0.0
 		self.vth = 0.0
+		self.joints = []
 		self.postureProxy = ALProxy("ALRobotPosture", IP, PORT)
 		self.motionProxy = ALProxy("ALMotion", IP, PORT)
 		self.motionProxy.setWalkArmsEnabled(True, True)
@@ -47,3 +48,6 @@ class Mouvements(object):
 	def set_vx(self, vx):	self.vx = vx
 	def set_vy(self, vy):	self.vy = vy
 	def set_vth(self, vth):	self.vth = vth
+
+	def update_joints(self):	self.joints = motionProxy.getAngles("Body", False)
+	def set_joints(self):		motionProxy.setAngles("Body", self.joints, 0.5)
