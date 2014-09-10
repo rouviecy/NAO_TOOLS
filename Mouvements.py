@@ -1,4 +1,5 @@
 from naoqi import ALProxy
+import IO_file
 import sys
 
 class Mouvements(object):
