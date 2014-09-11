@@ -43,7 +43,9 @@ class GUI(object):
 		elif	key == c.K_STIFFOFF:
 			if downing:								self.serveur.stiffness(False)
 		elif	key == c.K_SAVE_JOINTS:
-			if downing:								self.serveur.save_joints()
+			if downing:								self.serveur.save_joints(True)
+		elif	key == c.K_PLAY_JOINTS:
+			if downing:								self.serveur.save_joints(False)
 		return True
 
 	def action_joystick_bouton(self, bouton):

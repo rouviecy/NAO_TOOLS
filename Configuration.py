@@ -1,17 +1,18 @@
 class Configuration(object):
 
-	K_NORTH =			273
-	K_SOUTH =			274
-	K_LEFT =			276
-	K_RIGHT =			275
-	K_STIFFON =			270
-	K_STIFFOFF =		269
-	K_SAVE_JOINTS =		115
-	K_QUIT =			113
+	K_NORTH =			273 # haut
+	K_SOUTH =			274 # bas
+	K_LEFT =			276 # gauche
+	K_RIGHT =			275 # droite
+	K_STIFFON =			270 # +
+	K_STIFFOFF =		269 # -
+	K_SAVE_JOINTS =		115 # s
+	K_PLAY_JOINTS =		112 # p
+	K_QUIT =			113 # q
 
 	J_INDEX =			0
 	J_BUTTON_A =		0
-	J_BUTTON_B =		2
+	J_BUTTON_B =		1
 	J_AXIS_WE =			0
 	J_AXIS_NS =			1
 	J_AXIS_ROT =		2

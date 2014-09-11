@@ -51,7 +51,7 @@ class Mouvements(object):
 	def set_vy(self, vy):	self.vy = vy
 	def set_vth(self, vth):	self.vth = vth
 
-	def update_joints(self):	self.joints = motionProxy.getAngles("Body", False)
+	def update_joints(self):	self.joints = self.motionProxy.getAngles("Body", False)
 	def set_joints(self):		self.motionProxy.setAngles("Body", self.joints, 0.5)
 
 	def save_joints(self):
@@ -61,6 +61,6 @@ class Mouvements(object):
 	def apply_joints_from_file(self):
 		liste = self.io_file.read_joints()
 		for elem in liste:
-			self.joints = liste[1]
+			self.joints = elem[1]
 			self.set_joints()
-			time.sleep(liste[0])
+			time.sleep(elem[0])

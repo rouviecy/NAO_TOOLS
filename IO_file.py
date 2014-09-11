@@ -18,6 +18,7 @@ class IO_file(object):
 		f = open('historique.txt', 'r')
 		liste = []
 		for ligne in f:
-			elems = ligne.split(" ")
-			liste.append(elems)
-		return [liste[0], liste[1:len(liste)]]
+			elems = ligne.split("\n")[0].split(" ")
+			elems = [float(elem) for elem in elems]
+			liste.append([elems[0], elems[1:len(elems)]])
+		return liste
