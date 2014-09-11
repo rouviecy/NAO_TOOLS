@@ -1,5 +1,5 @@
 from naoqi import ALProxy
-import IO_file
+from IO_file import IO_file
 import sys, time
 
 class Mouvements(object):
@@ -10,7 +10,7 @@ class Mouvements(object):
 		self.vy = 0.0
 		self.vth = 0.0
 		self.joints = []
-		self.io_file = IO_file();
+		self.io_file = IO_file()
 		self.postureProxy = ALProxy("ALRobotPosture", IP, PORT)
 		self.motionProxy = ALProxy("ALMotion", IP, PORT)
 		self.motionProxy.setWalkArmsEnabled(True, True)

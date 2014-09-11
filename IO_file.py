@@ -3,7 +3,7 @@ import sys
 class IO_file(object):
 
 	def __init__(self):
-		pass
+		a = 42
 
 	def write_joints(self, joints, dt):
 		f = open('historique.txt', 'a')

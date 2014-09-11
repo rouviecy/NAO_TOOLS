@@ -22,15 +22,11 @@ class Actionneur(object):
 	def save_joints(self):			self.move.save_joints()
 
 	def modifier_vitesse(self, dx, dy, dth):
-		self.rotation += dx
-		self.avance += dy
-		str_rot = "reste dans l'axe"
-		str_av = "reste sur place"
-		if self.rotation < 0: str_rot = "va a gauche"
-		if self.rotation > 0: str_rot = "va a droite"
-		if self.avance < 0: str_av = "recule"
-		if self.avance > 0: str_av = "avance"
-		print str_rot + " et " + str_av
+		self.rotation += dth
+		self.avance += dx
+		self.cote += dy
+		print "vx =", self.avance, "\tvy =", self.cote, "\tvth =", self.rotation
+		print "------------------------------------------------"
 		if		self.avance == +1:		self.move.set_vx(+0.7)
 		elif	self.avance == -1:		self.move.set_vx(-0.7)
 		else:							self.move.set_vx(+0.0)
@@ -41,7 +37,6 @@ class Actionneur(object):
 		elif	self.rotation == -1:	self.move.set_vth(-0.7)
 		else:							self.move.set_vth(+0.0)
 		self.move.go_move()
-		print "------------------------------------------"
 
 	def quitter(self):
 		pass;
