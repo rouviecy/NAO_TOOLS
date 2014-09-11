@@ -9,6 +9,8 @@ class Recorder(Thread):
 		self.continuer = False
 
 	def run(self):
+		fichier = self.mouvements.io_file.init_write_joints()
 		while self.continuer:
-			self.mouvements.save_joints()
+			self.mouvements.save_joints(False)
 			time.sleep(0.1)
+		self.mouvements.io_file.write_joints(fichier)

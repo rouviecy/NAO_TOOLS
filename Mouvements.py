@@ -56,11 +56,12 @@ class Mouvements(object):
 	def set_vth(self, vth):	self.vth = vth
 
 	def update_joints(self):	self.joints = self.motionProxy.getAngles("Body", False)
-	def set_joints(self):		self.motionProxy.angleInterpolation("Body", self.joints, 0.1, True)
 
-	def save_joints(self):
+	def save_joints(self, write):
 		self.update_joints()
-		self.io_file.write_joints(self.joints, 0.1)
+		if write: fichier = self.io_file.init_write_joints()
+		self.io_file.add_joints(self.joints, 0.1)
+		if write: self.io_file.write_joints(fichier)
 
 	def record(self):
 		self.is_recording = not self.is_recording

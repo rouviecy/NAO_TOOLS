@@ -21,7 +21,7 @@ class Actionneur(object):
 	def assis(self):				self.move.go_assis()
 	def debout(self):				self.move.go_debout()
 	def save_joints(self, save):
-		if save:					self.move.save_joints()
+		if save:					self.move.save_joints(True)
 		else:						self.move.apply_joints_from_file()
 
 	def modifier_vitesse(self, dx, dy, dth):

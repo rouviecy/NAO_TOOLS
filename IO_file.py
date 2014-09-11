@@ -3,16 +3,21 @@ import sys
 class IO_file(object):
 
 	def __init__(self):
-		a = 42
+		self.lignes = ""
 
-	def write_joints(self, joints, dt):
-		f = open('historique.txt', 'a')
+	def init_write_joints(self):
+		return open('historique.txt', 'a')
+
+	def add_joints(self, joints, dt):
 		ligne = str(dt)
 		for joint in joints:
 			ligne += " " + str(joint)
 		ligne += "\n"
-		f.write(ligne)
-		f.close()
+		self.lignes += ligne
+
+	def write_joints(self, fichier):
+		fichier.write(self.lignes)
+		fichier.close()
 
 	def read_joints(self):
 		f = open('historique.txt', 'r')
