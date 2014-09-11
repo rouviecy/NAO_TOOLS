@@ -36,6 +36,9 @@ class Interface_client(object):
 				elif	c[3*i+1] == 'a' :
 					if		c[3*i+2] == '0' :	self.save_joints(False)
 					elif	c[3*i+2] == '1' :	self.save_joints(True)
+			elif c[3*i+0] == 'r':
+				if		c[3*i+1] == 'e' :
+					if		c[3*i+2] == 'c' :	self.record()
 
 	def go_left(self, activer):		self.actionneur.go_left(activer)
 	def go_right(self, activer):	self.actionneur.go_right(activer)
@@ -44,6 +47,7 @@ class Interface_client(object):
 	def go_west(self, activer):		self.actionneur.go_west(activer)
 	def go_est(self, activer):		self.actionneur.go_est(activer)
 	def stiffness(self, activer):	self.actionneur.stiffness(activer)
+	def record(self):				self.actionneur.record()
 	def assis(self):				self.actionneur.assis()
 	def debout(self):				self.actionneur.debout()
 	def save_joints(self, save):	self.actionneur.save_joints(save)

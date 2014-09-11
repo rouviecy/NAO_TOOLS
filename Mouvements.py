@@ -1,5 +1,6 @@
 from naoqi import ALProxy
 from IO_file import IO_file
+from Recorder import Recorder
 import sys, time
 
 class Mouvements(object):
@@ -11,6 +12,8 @@ class Mouvements(object):
 		self.vth = 0.0
 		self.joints = []
 		self.io_file = IO_file()
+		self.recorder = Recorder(self)
+		self.is_recording = False
 		self.postureProxy = ALProxy("ALRobotPosture", IP, PORT)
 		self.motionProxy = ALProxy("ALMotion", IP, PORT)
 		self.motionProxy.setWalkArmsEnabled(True, True)
@@ -46,21 +49,29 @@ class Mouvements(object):
 
 	def go_move(self):
 		self.motionProxy.setWalkTargetVelocity(self.vx, self.vy, self.vth, 0.8)
+		self.motionProxy.setWalkTargetVelocity(self.vx, self.vy, self.vth, 0.8)
 
 	def set_vx(self, vx):	self.vx = vx
 	def set_vy(self, vy):	self.vy = vy
 	def set_vth(self, vth):	self.vth = vth
 
 	def update_joints(self):	self.joints = self.motionProxy.getAngles("Body", False)
-	def set_joints(self):		self.motionProxy.setAngles("Body", self.joints, 0.5)
+	def set_joints(self):		self.motionProxy.angleInterpolation("Body", self.joints, 0.1, True)
 
 	def save_joints(self):
 		self.update_joints()
-		self.io_file.write_joints(self.joints, 1.)
+		self.io_file.write_joints(self.joints, 0.1)
+
+	def record(self):
+		self.is_recording = not self.is_recording
+		if self.is_recording:
+			self.recorder.continuer = True
+			self.recorder.start()
+		else:
+			self.recorder.continuer = False
+			self.recorder.join()
 
 	def apply_joints_from_file(self):
-		liste = self.io_file.read_joints()
-		for elem in liste:
-			self.joints = elem[1]
-			self.set_joints()
-			time.sleep(elem[0])
+		temps, angles = self.io_file.read_joints()
+		self.motionProxy.angleInterpolation("Body", angles, temps, True)
+

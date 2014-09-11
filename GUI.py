@@ -46,6 +46,8 @@ class GUI(object):
 			if downing:								self.serveur.save_joints(True)
 		elif	key == c.K_PLAY_JOINTS:
 			if downing:								self.serveur.save_joints(False)
+		elif	key == c.K_RECORD:
+			if downing:								self.serveur.record()
 		return True
 
 	def action_joystick_bouton(self, bouton):

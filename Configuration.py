@@ -8,6 +8,7 @@ class Configuration(object):
 	K_STIFFOFF =		269 # -
 	K_SAVE_JOINTS =		115 # s
 	K_PLAY_JOINTS =		112 # p
+	K_RECORD =			114 # r
 	K_QUIT =			113 # q
 
 	J_INDEX =			0
