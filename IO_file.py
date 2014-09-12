@@ -18,6 +18,7 @@ class IO_file(object):
 	def write_joints(self, fichier):
 		fichier.write(self.lignes)
 		fichier.close()
+		self.lignes = ""
 
 	def read_joints(self):
 		f = open('historique.txt', 'r')
