@@ -6,9 +6,8 @@ import time
 
 class Interface_serveur(object):
 	
-	def __init__(self):
+	def __init__(self, port):
 		host = ''
-		port = 4242
 		self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		self.s.bind((host, port))
 		self.s.listen(5)

@@ -49,7 +49,6 @@ class Mouvements(object):
 
 	def go_move(self):
 		self.motionProxy.setWalkTargetVelocity(self.vx, self.vy, self.vth, 0.8)
-		self.motionProxy.setWalkTargetVelocity(self.vx, self.vy, self.vth, 0.8)
 
 	def set_vx(self, vx):	self.vx = vx
 	def set_vy(self, vy):	self.vy = vy
