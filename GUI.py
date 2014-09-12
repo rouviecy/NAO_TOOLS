@@ -51,8 +51,9 @@ class GUI(object):
 		return True
 
 	def action_joystick_bouton(self, bouton):
-		if		bouton == c.J_BUTTON_A:	self.serveur.assis()
-		elif	bouton == c.J_BUTTON_B:	self.serveur.debout()
+		if		bouton == c.J_BUTTON_A:			self.serveur.assis()
+		elif	bouton == c.J_BUTTON_B:			self.serveur.debout()
+		elif	bouton == c.J_BUTTON_RECORD:	self.serveur.record()
 		return True
 
 	def action_joystick_axe(self, axe, valeur):

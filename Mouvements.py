@@ -60,7 +60,7 @@ class Mouvements(object):
 	def save_joints(self, write):
 		self.update_joints()
 		if write: fichier = self.io_file.init_write_joints()
-		self.io_file.add_joints(self.joints, 0.1)
+		self.io_file.add_joints(self.joints, 0.5)
 		if write: self.io_file.write_joints(fichier)
 
 	def record(self):

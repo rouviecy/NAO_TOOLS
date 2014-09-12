@@ -12,8 +12,9 @@ class Configuration(object):
 	K_QUIT =			113 # q
 
 	J_INDEX =			0
-	J_BUTTON_A =		0
-	J_BUTTON_B =		1
+	J_BUTTON_A =		0	# s'assoir
+	J_BUTTON_B =		1	# se lever
+	J_BUTTON_RECORD =	6	# enregistrer
 	J_AXIS_WE =			0
 	J_AXIS_NS =			1
 	J_AXIS_ROT =		2
