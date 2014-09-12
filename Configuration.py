@@ -15,6 +15,8 @@ class Configuration(object):
 	J_BUTTON_A =		0	# s'assoir
 	J_BUTTON_B =		1	# se lever
 	J_BUTTON_RECORD =	6	# enregistrer
+	J_BUTTON_PLAY =		4	# jouer enregistrement
+	J_BUTTON_STIFF =	2	# permuter stiffness
 	J_AXIS_WE =			0
 	J_AXIS_NS =			1
 	J_AXIS_ROT =		2

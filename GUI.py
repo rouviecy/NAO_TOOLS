@@ -10,6 +10,7 @@ class GUI(object):
 		self.joystick_WE = 0
 		self.joystick_NS = 0
 		self.joystick_ROT = 0
+		self.stiffness_state = False
 		self.clock = pygame.time.Clock()
 		self.serveur = serveur
 		self.initialisation()
@@ -54,6 +55,10 @@ class GUI(object):
 		if		bouton == c.J_BUTTON_A:			self.serveur.assis()
 		elif	bouton == c.J_BUTTON_B:			self.serveur.debout()
 		elif	bouton == c.J_BUTTON_RECORD:	self.serveur.record()
+		elif	bouton == c.J_BUTTON_PLAY:		self.serveur.save_joints(False)
+		elif	bouton == c.J_BUTTON_STIFF:
+			self.stiffness_state = not self.stiffness_state
+			self.serveur.stiffness(self.stiffness_state)
 		return True
 
 	def action_joystick_axe(self, axe, valeur):
