@@ -55,6 +55,7 @@ class GUI(object):
 		if		bouton == c.J_BUTTON_A:			self.serveur.assis()
 		elif	bouton == c.J_BUTTON_B:			self.serveur.debout()
 		elif	bouton == c.J_BUTTON_RECORD:	self.serveur.record()
+		elif	bouton == c.J_BUTTON_SAVE:		self.serveur.save_joints(True)
 		elif	bouton == c.J_BUTTON_PLAY:		self.serveur.save_joints(False)
 		elif	bouton == c.J_BUTTON_STIFF:
 			self.stiffness_state = not self.stiffness_state
