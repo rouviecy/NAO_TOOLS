@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from threading import Thread
 import socket
 import select
 import time
@@ -10,9 +11,10 @@ class Interface_serveur(object):
 		host = ''
 		self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		self.s.bind((host, port))
-		self.s.listen(5)
 		print("Écoute sur le port {}".format(port))
-		self.client, _ = self.s.accept()
+		self.liste_clients = []
+		self.liste_threads = Thread_serveur(self)
+		self.liste_threads.start()
 
 	def go_left(self, activer):		self.envoyer("gl" + ("1" if activer else "0"))
 	def go_right(self, activer):	self.envoyer("gr" + ("1" if activer else "0"))
@@ -31,5 +33,16 @@ class Interface_serveur(object):
 		self.s.close()
 
 	def envoyer(self, message):
-		self.client.send(message.encode())
+		for client in self.liste_clients:
+			client.send(message.encode())
 		
+class Thread_serveur(Thread):
+
+	def __init__(self, serveur):
+		Thread.__init__(self)
+		self.serveur = serveur
+
+	def run(self):
+		self.serveur.s.listen(5)
+		nouveau_client, _ = self.serveur.s.accept()
+		self.serveur.liste_clients.append(nouveau_client)
