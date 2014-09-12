@@ -27,6 +27,8 @@ class Interface_serveur(object):
 	def record(self):				self.envoyer("rec")
 	def assis(self):				self.envoyer("po0")
 	def debout(self):				self.envoyer("po1")
+	def vitesse_tete(self, vx, vy):
+		self.envoyer("h" + str(vx + 1) + str(vy + 1))
 	def quitter(self):
 		self.envoyer("bye")
 		time.sleep(1)

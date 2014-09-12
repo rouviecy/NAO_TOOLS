@@ -137,6 +137,19 @@ class GUI(object):
 					self.serveur.go_right(False)
 		return True
 
+	def action_hat(self, hat, valeur):
+		if hat != c.J_HAT_HEAD: return True
+		if		valeur == c.J_HAT_0:	self.serveur.vitesse_tete(+0, +0)
+		elif	valeur == c.J_HAT_N :	self.serveur.vitesse_tete(+0, +1)
+		elif	valeur == c.J_HAT_S :	self.serveur.vitesse_tete(+0, -1)
+		elif	valeur == c.J_HAT_W :	self.serveur.vitesse_tete(-1, +0)
+		elif	valeur == c.J_HAT_E :	self.serveur.vitesse_tete(+1, +0)
+		elif	valeur == c.J_HAT_NE :	self.serveur.vitesse_tete(+1, +1)
+		elif	valeur == c.J_HAT_SE :	self.serveur.vitesse_tete(+1, -1)
+		elif	valeur == c.J_HAT_SW :	self.serveur.vitesse_tete(-1, -1)
+		elif	valeur == c.J_HAT_NW :	self.serveur.vitesse_tete(-1, +1)
+		return True
+
 	def bouclage(self):
 		continuer = True
 		while continuer:
@@ -146,4 +159,5 @@ class GUI(object):
 				elif	event.type == KEYUP:			continuer = self.action_clavier(False, event.key)
 				elif	event.type == JOYBUTTONDOWN:	continuer = self.action_joystick_bouton(event.button)
 				elif	event.type == JOYAXISMOTION:	continuer = self.action_joystick_axe(event.axis, event.value)
+				elif	event.type == JOYHATMOTION:		continuer = self.action_hat(event.hat, event.value)
 			self.clock.tick(20)

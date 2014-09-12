@@ -23,6 +23,7 @@ class Actionneur(object):
 	def save_joints(self, save):
 		if save:					self.move.save_joints(True)
 		else:						self.move.apply_joints_from_file()
+	def vitesse_tete(self, vx, vy):	self.move.move_head(vx, vy)
 
 	def modifier_vitesse(self, dx, dy, dth):
 		self.rotation += dth

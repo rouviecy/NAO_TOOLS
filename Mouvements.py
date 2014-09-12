@@ -76,3 +76,5 @@ class Mouvements(object):
 		if len(angles) == 0 : return
 		self.motionProxy.angleInterpolation("Body", angles, temps, True)
 
+	def move_head(self, vx, vy):
+		self.motionProxy.angleInterpolation(["HeadYaw", "HeadPitch"], [-float(vx), -float(vy)], [2., 2.], False)

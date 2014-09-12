@@ -30,3 +30,13 @@ class Configuration(object):
 	J_INTERVAL_L =		[-2.0, -0.9]
 	J_INTERVAL_R =		[+0.9, +2.0]
 	J_INTERVAL_0ROT =	[-0.7, +0.7]
+	J_HAT_HEAD =		0
+	J_HAT_0 =			(+0, +0)
+	J_HAT_N =			(+0, +1)
+	J_HAT_S =			(+0, -1)
+	J_HAT_W =			(-1, +0)
+	J_HAT_E =			(+1, +0)
+	J_HAT_NE =			(+1, +1)
+	J_HAT_SE =			(+1, -1)
+	J_HAT_SW =			(-1, -1)
+	J_HAT_NW =			(-1, +1)

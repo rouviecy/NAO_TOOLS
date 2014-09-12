@@ -22,14 +22,16 @@ def bouclage():
 	continuer = True
 	while continuer:
 		for event in pygame.event.get():
-			if event.type == QUIT:
+			if		event.type == QUIT:
 				continuer = False
-			if event.type == KEYDOWN:
+			elif	event.type == KEYDOWN:
 				print "Appui sur la touche :\t" + str(event.key)
-			if event.type == JOYBUTTONDOWN:
+			elif	event.type == JOYBUTTONDOWN:
 				print "Appui sur le bouton joystick :\t" + str(event.button)
-			if event.type == JOYAXISMOTION:
+			elif	event.type == JOYAXISMOTION:
 				print "Mouvement d'axe :\t" + str(event.axis) + "\tà la position :\t" + str(event.value)
+			elif	event.type == JOYHATMOTION:
+				print "Mouvement du pointeur :\t" + str(event.hat) + "\tà la position :\t" + str(event.value)
 		continue;
 
 if __name__ == "__main__":
