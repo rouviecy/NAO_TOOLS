@@ -73,5 +73,6 @@ class Mouvements(object):
 
 	def apply_joints_from_file(self):
 		temps, angles = self.io_file.read_joints()
+		if len(angles) == 0 : return
 		self.motionProxy.angleInterpolation("Body", angles, temps, True)
 

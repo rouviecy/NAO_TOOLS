@@ -33,6 +33,7 @@ class IO_file(object):
 			liste_angles.append(elems[1:len(elems)])
 		temps = []
 		angles = []
+		if len(liste_angles) == 0: return [], []
 		for i in range(len(liste_angles[0])):
 			joint = [liste_angles[j][i] for j in range(len(liste_angles))]
 			vect_t = [liste_temps[j] for j in range(len(liste_angles))]
