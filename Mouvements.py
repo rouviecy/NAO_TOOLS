@@ -12,7 +12,6 @@ class Mouvements(object):
 		self.vth = 0.0
 		self.joints = []
 		self.io_file = IO_file()
-		self.recorder = Recorder(self)
 		self.is_recording = False
 		self.postureProxy = ALProxy("ALRobotPosture", IP, PORT)
 		self.motionProxy = ALProxy("ALMotion", IP, PORT)
@@ -65,6 +64,7 @@ class Mouvements(object):
 	def record(self):
 		self.is_recording = not self.is_recording
 		if self.is_recording:
+			self.recorder = Recorder(self)
 			self.recorder.continuer = True
 			self.recorder.start()
 		else:
