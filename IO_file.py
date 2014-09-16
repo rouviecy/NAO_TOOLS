@@ -20,7 +20,7 @@ class IO_file(object):
 		fichier.close()
 		self.lignes = ""
 
-	def read_joints(self):
+	def read_joints(self, only_last):
 		f = open('historique.txt', 'r')
 		t = 0
 		liste_temps = []
@@ -34,6 +34,10 @@ class IO_file(object):
 		temps = []
 		angles = []
 		if len(liste_angles) == 0: return [], []
+		if only_last:
+			last_index = len(temps) - 1
+			liste_temps = [1.]
+			liste_angles = [liste_angles[last_index]]
 		for i in range(len(liste_angles[0])):
 			joint = [liste_angles[j][i] for j in range(len(liste_angles))]
 			vect_t = [liste_temps[j] for j in range(len(liste_angles))]

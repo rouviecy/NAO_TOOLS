@@ -18,6 +18,7 @@ class Configuration(object):
 	J_BUTTON_RECORD =	6	# enregistrer dans le temps
 	J_BUTTON_PLAY =		4	# jouer enregistrement
 	J_BUTTON_STIFF =	2	# permuter stiffness
+	J_BUTTON_LASTPOSE =	3	# se mettre dans la derniere pose enregistree
 	J_AXIS_WE =			0
 	J_AXIS_NS =			1
 	J_AXIS_ROT =		2

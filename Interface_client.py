@@ -40,6 +40,9 @@ class Interface_client(object):
 				if		c[3*i+1] == 'e' :
 					if		c[3*i+2] == 'c' :	self.record()
 			elif c[3*i+0] == 'h':				self.vitesse_tete(int(c[3*i+1]) - 1, int(c[3*i+2]) - 1)
+			elif c[3*i+0] == 'l':
+				if		c[3*i+1] == 's' :
+					if		c[3*i+2] == 't' :	self.last_pose()
 
 	def go_left(self, activer):		self.actionneur.go_left(activer)
 	def go_right(self, activer):	self.actionneur.go_right(activer)
@@ -51,5 +54,6 @@ class Interface_client(object):
 	def record(self):				self.actionneur.record()
 	def assis(self):				self.actionneur.assis()
 	def debout(self):				self.actionneur.debout()
+	def last_pose(self):			self.actionneur.last_pose()
 	def save_joints(self, save):	self.actionneur.save_joints(save)
 	def vitesse_tete(self, vx, vy):	self.actionneur.vitesse_tete(vx, vy)

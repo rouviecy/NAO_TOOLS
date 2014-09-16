@@ -16,7 +16,8 @@ class Mouvements(object):
 		self.postureProxy = ALProxy("ALRobotPosture", IP, PORT)
 		self.motionProxy = ALProxy("ALMotion", IP, PORT)
 		self.motionProxy.setWalkArmsEnabled(True, True)
-		self.motionProxy.setMotionConfig([["ENABLE_FOOT_CONTACT_PROTECTION", True]])
+		self.motionProxy.setMotionConfig([["ENABLE_FOOT_CONTACT_PROTECTION", False]])
+		self.motionProxy.setFallManagerEnabled(False)
 
 	def stiffness(self, go_rigide):
 		parametre = 1.0 if go_rigide else 0.0
@@ -58,7 +59,7 @@ class Mouvements(object):
 	def save_joints(self, write):
 		self.update_joints()
 		if write: fichier = self.io_file.init_write_joints()
-		self.io_file.add_joints(self.joints, 0.5)
+		self.io_file.add_joints(self.joints, 1.2)
 		if write: self.io_file.write_joints(fichier)
 
 	def record(self):
@@ -71,10 +72,10 @@ class Mouvements(object):
 			self.recorder.continuer = False
 			self.recorder.join()
 
-	def apply_joints_from_file(self):
-		temps, angles = self.io_file.read_joints()
+	def apply_joints_from_file(self, only_last):
+		temps, angles = self.io_file.read_joints(only_last)
 		if len(angles) == 0 : return
 		self.motionProxy.angleInterpolation("Body", angles, temps, True)
 
 	def move_head(self, vx, vy):
-		self.motionProxy.angleInterpolation(["HeadYaw", "HeadPitch"], [-float(vx), -float(vy)], [2., 2.], False)
+		self.motionProxy.angleInterpolation(["HeadYaw", "HeadPitch"], [-0.1 * float(vx), -0.1 * float(vy)], [0.2, 0.2], False)

@@ -12,5 +12,5 @@ class Recorder(Thread):
 		fichier = self.mouvements.io_file.init_write_joints()
 		while self.continuer:
 			self.mouvements.save_joints(False)
-			time.sleep(0.5)
+			time.sleep(1.2)
 		self.mouvements.io_file.write_joints(fichier)

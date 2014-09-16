@@ -24,12 +24,14 @@ class Interface_serveur(object):
 	def go_est(self, activer):		self.envoyer("ge" + ("1" if activer else "0"))
 	def stiffness(self, activer):	self.envoyer("st" + ("1" if activer else "0"))
 	def save_joints(self, save):	self.envoyer("sa" + ("1" if save else "0"))
+	def last_pose(self):			self.envoyer("lst")
 	def record(self):				self.envoyer("rec")
 	def assis(self):				self.envoyer("po0")
 	def debout(self):				self.envoyer("po1")
 	def vitesse_tete(self, vx, vy):
 		self.envoyer("h" + str(vx + 1) + str(vy + 1))
 	def quitter(self):
+		self.liste_threads.continuer = False
 		self.envoyer("bye")
 		time.sleep(1)
 		self.s.close()
@@ -37,14 +39,16 @@ class Interface_serveur(object):
 	def envoyer(self, message):
 		for client in self.liste_clients:
 			client.send(message.encode())
-		
+
 class Thread_serveur(Thread):
 
 	def __init__(self, serveur):
 		Thread.__init__(self)
 		self.serveur = serveur
+		self.continuer = True
 
 	def run(self):
-		self.serveur.s.listen(5)
-		nouveau_client, _ = self.serveur.s.accept()
-		self.serveur.liste_clients.append(nouveau_client)
+		while self.continuer:
+			self.serveur.s.listen(5)
+			nouveau_client, _ = self.serveur.s.accept()
+			self.serveur.liste_clients.append(nouveau_client)
