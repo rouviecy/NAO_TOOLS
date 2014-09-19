@@ -27,6 +27,7 @@ class IO_file(object):
 		liste_angles = []
 		for ligne in f:
 			elems = ligne.split("\n")[0].split(" ")
+			if len(elems) < 5: continue
 			elems = [float(elem) for elem in elems]
 			t += elems[0]
 			liste_temps.append(t)
