@@ -8,13 +8,14 @@ import time
 class Interface_serveur(object):
 	
 	def __init__(self, port):
-		host = ''
+		self.host = ''
+		self.port = port
 		self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-		self.s.bind((host, port))
+		self.s.bind((self.host, self.port))
 		print("Écoute sur le port {}".format(port))
 		self.liste_clients = []
-		self.liste_threads = Thread_serveur(self)
-		self.liste_threads.start()
+		self.listen_thread = Thread_serveur(self)
+		self.listen_thread.start()
 
 	def go_left(self, activer):		self.envoyer("gl" + ("1" if activer else "0"))
 	def go_right(self, activer):	self.envoyer("gr" + ("1" if activer else "0"))
@@ -31,7 +32,8 @@ class Interface_serveur(object):
 	def vitesse_tete(self, vx, vy):
 		self.envoyer("h" + str(vx + 1) + str(vy + 1))
 	def quitter(self):
-		self.liste_threads.continuer = False
+		self.listen_thread.stop()
+		self.listen_thread.join()
 		self.envoyer("bye")
 		time.sleep(1)
 		self.s.close()
@@ -52,3 +54,7 @@ class Thread_serveur(Thread):
 			self.serveur.s.listen(5)
 			nouveau_client, _ = self.serveur.s.accept()
 			self.serveur.liste_clients.append(nouveau_client)
+
+	def stop(self):
+		self.continuer = False
+		socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect((self.serveur.host, self.serveur.port))
