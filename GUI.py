@@ -49,6 +49,10 @@ class GUI(object):
 			if downing:								self.serveur.save_joints(False)
 		elif	key == c.K_RECORD:
 			if downing:								self.serveur.record()
+		elif	key == c.K_SITDOWN:
+			if downing:								self.serveur.assis()
+		elif	key == c.K_STANDUP:
+			if downing:								self.serveur.debout()
 		return True
 
 	def action_joystick_bouton(self, bouton):

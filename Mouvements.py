@@ -10,7 +10,7 @@ class Mouvements(object):
 		self.vx = 0.0
 		self.vy = 0.0
 		self.vth = 0.0
-		self.dt = 1.2
+		self.dt = 0.227
 		self.joints = []
 		self.io_file = IO_file()
 		self.is_recording = False
